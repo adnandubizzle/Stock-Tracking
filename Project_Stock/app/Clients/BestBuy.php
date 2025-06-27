@@ -11,6 +11,7 @@ class BestBuy implements Client
     {
 
         $results = Http::get($this->endpoint($stock->sku))->json();
+        dd($results);
 
         // intercept the requests to see the results
         //
@@ -19,14 +20,14 @@ class BestBuy implements Client
 
         return new StockStatus(
             $product['onlineAvailability'] ?? false,
-            (int) $product['salePrice'] * 100 // converting from dollars to cents
+            (int) $product['salePrice'] * 100 // $->c
         );
     }
 
     protected function endpoint($sku)
     {
-        $apiKey = config('services.clients.bestbuy.key');
+        $key = config('services.clients.bestbuy.key');
 
-        return "https://api.bestbuy.com/v1/products(sku={$sku})?apiKey={$apiKey}&format=json";
+        return "https://api.bestbuy.com/v1/products(sku={$sku})?apiKey={$key}&format=json";
     }
 }
