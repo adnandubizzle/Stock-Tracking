@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-
 use App\Models\Product;
 use App\Models\Retailer;
 use App\Models\Stock;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class RetailerWithProductSeeder extends Seeder
 {
@@ -16,17 +15,18 @@ class RetailerWithProductSeeder extends Seeder
      */
     public function run(): void
     {
-       $switch = Product::create(['name' => 'Nintendo Switch']);
-        $bestBuy = Retailer::create(['name' => 'Best Buy']);
+        $switch = Product::create(['name' => 'Nintendo Switch']);
+        $best_buy = Retailer::create(['name' => 'Best Buy']);
 
         $stock = new Stock([
-            'price' => 1000,
+            'price' => 10000,
             'url' => 'http://foo.com',
             'sku' => '12345',
             'in_stock' => false,
+
         ]);
+        User::factory()->create(['email' => 'jeffery@example.com']);
 
-        $bestBuy->addStock($switch, $stock);
-
+        $best_buy->addStock($switch, $stock);
     }
 }

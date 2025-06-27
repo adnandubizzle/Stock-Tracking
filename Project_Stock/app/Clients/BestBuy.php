@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Clients;
@@ -10,24 +11,21 @@ class BestBuy implements Client
     public function checkAvailability(Stock $stock): StockStatus
     {
 
-        $results = Http::get($this->endpoint($stock->sku))->json();
-        dd($results);
-
-        // intercept the requests to see the results
-        //
-
-        $product = $results['products'][0] ?? [];
+        $results = Http::get($this->endPoint($stock->sku))->json();
 
         return new StockStatus(
-            $product['onlineAvailability'] ?? false,
-            (int) $product['salePrice'] * 100 // $->c
+            $results['onlineAvailability'],
+            (int) ($results['salePrice'] * 100)  // dollarstocents
         );
+
     }
 
-    protected function endpoint($sku)
+    protected function endPoint($sku): string
     {
-        $key = config('services.clients.bestbuy.key');
 
-        return "https://api.bestbuy.com/v1/products(sku={$sku})?apiKey={$key}&format=json";
+        $apiKey = config('services.clients.bestBuy.key');
+
+        return "https://api.bestbuy.com/v1/products/{$sku}.json?apiKey={$apiKey}";
+
     }
 }
