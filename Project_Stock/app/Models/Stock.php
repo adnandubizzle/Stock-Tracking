@@ -22,26 +22,19 @@ class Stock extends Model
 
 
         //BESTBUY
-        if ($this->retailer->name === 'Best Buy') {
         
-            $results=(new BestBuy ())->checkAvailibility($this);
+        $status = $this->retailer->client()->checkAvailability($this);
             
-        }
+    
 
 
-//TARGET
-
-    //   if ($this->retailer->name === 'Target') {
+//update Db here
 
 
-    //     $results=(new Target ())->checkAvailibility($this);
-            
-    //     }
-        $this->update([
-            'in_stock' => $results['available'],
-            'price' => $results['price'],
+      $this->update([
+            'in_stock' => $status->available,  
+            'price' => $status->price,      
         ]);
-
     }
 
     public function retailer()
