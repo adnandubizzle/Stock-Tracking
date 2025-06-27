@@ -1,48 +1,41 @@
 <?php
 
 namespace App\Models;
+use App\UseCases\TrackStock;
 
 use App\Clients\BestBuy;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Support\Facades\Http;
 
 class Stock extends Model
 {
+        use HasFactory;
+
     protected $table = 'stock';
+
 
     protected $casts = [
         'in_stock' => 'boolean',
     ];
 
-    public function track()
-    {
-
-        // /hitapi endpoint at the retailer like best buy etc
-
-
-
-        //BESTBUY
-        
-        $status = $this->retailer
-        ->client()
-        ->checkAvailability($this);
-            
     
-
-
-//update Db here
-
-
-      $this->update([
-            'in_stock' => $status->available,  
-            'price' => $status->price,      
-        ]);
-    }
+   
 
     public function retailer()
     {
         return $this->belongsTo(Retailer::class);
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+     public function track()
+    {
+        (new TrackStock($this))->handle();
+
+    }
 
 }

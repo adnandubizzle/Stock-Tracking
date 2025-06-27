@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Product extends Model
 {
+    
+        use HasFactory;
     public function track()
     {
         $this->stock->each->track();
@@ -19,5 +23,10 @@ class Product extends Model
     public function stock()
     {
         return $this->hasMany(Stock::class);
+    }
+        public function histories()
+    {
+        return $this->hasMany(\App\Models\History::class);
+
     }
 }
