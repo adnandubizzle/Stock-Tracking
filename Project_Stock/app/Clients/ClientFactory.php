@@ -19,7 +19,7 @@ class ClientFactory
             throw new ClientException('Client not found for : '.$retailer->name);
         }
 
-        // Return object of class CLIENT
+        //object of class CLIENT
         return new $class;
 
     }

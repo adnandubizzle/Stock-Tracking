@@ -23,7 +23,9 @@ class Stock extends Model
 
         //BESTBUY
         
-        $status = $this->retailer->client()->checkAvailability($this);
+        $status = $this->retailer
+        ->client()
+        ->checkAvailability($this);
             
     
 

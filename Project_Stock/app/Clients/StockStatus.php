@@ -10,7 +10,7 @@ class StockStatus
     public $price;
 
     
-//Constructor
+//Constructor inn php
     public function __construct($available, $price)
     {
         $this->available = $available;
