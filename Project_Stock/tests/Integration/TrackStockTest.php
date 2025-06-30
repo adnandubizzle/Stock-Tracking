@@ -6,7 +6,6 @@ use App\Models\Stock;
 use App\Models\User;
 use App\Notifications\ImportantStockUpdate;
 use App\UseCases\TrackStock;
-use Database\Seeders\RetailerWithProduct;
 use Database\Seeders\RetailerWithProductSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -31,7 +30,7 @@ class TrackStockTest extends TestCase
     }
 
     /** @test */
-    public function it_refreshes_the_local_stock()
+    public function refresh_stock()
     {
 
         Notification::fake();

@@ -21,7 +21,7 @@ class BestBuyTest extends TestCase
     {
         $this->seed(RetailerWithProductSeeder::class);
         $stock = tap(Stock::first())->update([
-            'sku' => '6522225',                   //given in the url
+            'sku' => '6522225', //given in the url
             'url' => 'https://www.bestbuy.com/site/switch-with-neon-blue-and-neon-red-joycon-nintendo-switch/6522225.p?skuId=6522225',
         ]);
 
