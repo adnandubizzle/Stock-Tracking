@@ -11,13 +11,15 @@ class BestBuy implements Client
     {
         $results = Http::get($this->endPoint($stock->sku))->json();
 
-        // Safe access using null coalescing to avoid errors on missing keys
+        //fail safe of false and 100 in onlineAvailibility and salePrice respectively.
         return new StockStatus(
             $results['onlineAvailability'] ?? false,
             (int) (($results['salePrice'] ?? 0) * 100)
         );
     }
 
+
+    // Dynamic fetching of the product with the supplied SKU in params.
     protected function endPoint($sku): string
     {
         $apiKey = config('services.clients.bestBuy.key');

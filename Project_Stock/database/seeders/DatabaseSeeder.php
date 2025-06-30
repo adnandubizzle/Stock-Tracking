@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+
+
+     // when called in tracksrock in php. it populates user name and emai
+     //for testing puposes
+     
     public function run(): void
     {
         

@@ -38,9 +38,9 @@ class ImportantStockUpdate extends Notification
     {
         return (new MailMessage)
             ->subject('Important Stock Update for'.$this->stock->product->name)
-            ->line('We have an important notification that the product is in stock!!!!')
-            ->action('Buy It Now', url($this->stock->url))
-            ->line('Get it right now');
+            ->line('Product is in stock!')
+            ->action('Buy Now', url($this->stock->url))
+            ->line('Get it now');
     }
 
     /**

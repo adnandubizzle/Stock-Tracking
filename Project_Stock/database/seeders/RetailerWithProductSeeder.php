@@ -13,6 +13,10 @@ class RetailerWithProductSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
+
+     // it adds dummy data for Product, Retailer and Stock
+     // and calls addStock() with product and stock as its parameters to add DUMMY Stock.
     public function run(): void
     {
         $switch = Product::create(['name' => 'Nintendo Switch']);

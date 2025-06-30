@@ -19,6 +19,8 @@ class TrackStock
         $this->stock = $stock;
     }
 
+
+    //cleaner Approach
     public function handle()
     {
 
@@ -63,3 +65,4 @@ class TrackStock
 
     }
 }
+
