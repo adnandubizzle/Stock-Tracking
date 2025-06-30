@@ -27,3 +27,5 @@ class BestBuy implements Client
         return "https://api.bestbuy.com/v1/products/{$sku}.json?apiKey={$apiKey}";
     }
 }
+
+//the End
